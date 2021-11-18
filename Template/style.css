@@ -41,8 +41,9 @@ body {
   color: #805ad5;
   text-decoration: underline;
 }
-header {
-  padding: 1rem 2rem;
+/* header  */
+.navbar {
+  padding: 1rem 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,7 +55,7 @@ header {
     "main"
     "footer";
   grid-template-columns: 1fr;
-  grid-template-rows: 10rem 1fr 22rem;
+  grid-template-rows: 10rem 1fr 25rem;
   height: 100%;
 }
 .navbar-left {
@@ -85,7 +86,7 @@ header {
   letter-spacing: 0.07em;
 }
 .footer__logo-container {
-  transform: translateY(30px);
+  transform: translateY(25px);
 }
 .navbar-left__logo-line,
 .footer__logo-line {
@@ -122,15 +123,81 @@ header {
   letter-spacing: 0.05rem;
   transform: translateY(-38px);
 }
-footer {
+.main {
   padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.main__container {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.main__card {
+  margin: 2rem 1rem;
+  max-width: 300px;
+  min-width: 220px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+  transition: box-shadow 0.2s;
+  border-radius: 2%;
+  background-color: #f3f3f3;
+  border: solid 1px #e4e4e4;
+}
+.main__card:hover {
+  box-shadow: 0 25px 70px -15px rgb(0 0 0 / 25%);
+}
+.main__picture-box {
+  width: 100%;
+}
+.main__img {
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 2%;
+  border-top-right-radius: 2%;
+}
+.main__link {
+  color: currentColor;
+  text-decoration: none;
+}
+.main__title {
+  color: #4a5568;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 6%);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0.3rem 0;
+  width: calc(100% - 4rem);
+  height: 36px;
+}
+.main__price {
+  font-family: "Racing Sans One", sans-serif;
+  text-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+  font-size: 2rem;
+  color: #4a5568;
+  margin: 0.3rem 0;
+}
+.main__card-body {
+  width: 100%;
+  padding: 1rem 2rem;
+}
+.main__rating {
+  font-size: 1.4rem;
+  color: #805ad5;
+}
+.main__btn {
+  margin: 1rem auto;
+  width: calc(100% - 4rem);
+}
+.footer {
+  margin-top: 5rem;
 }
 .footer__container {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.footer__policy {
 }
 .footer__link-container {
   list-style: none;
@@ -164,8 +231,7 @@ footer {
   grid-template-rows: 1fr;
   height: 100%;
   column-gap: 20px;
-  row-gap: 20px;
-  max-width: 1200px;
+  row-gap: 10px;
 }
 .footer__links-box {
   width: 178px;
@@ -175,6 +241,7 @@ footer {
 }
 .footer__links-box:nth-of-type(1) {
   grid-area: one;
+  transform: scale(0.75);
 }
 .footer__links-box:nth-of-type(2) {
   grid-area: two;
@@ -188,5 +255,41 @@ footer {
 .footer__header {
   color: #4a5568;
 }
-@media only screen and (max-width: 799px) {
+/* FOOTER TABLET */
+@media only screen and (max-width: 849px) {
+  .footer__links {
+    grid-template-areas: "one two" "three four";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 10px;
+  }
+  .grid-container {
+    grid-template-rows: 10rem 1fr 40rem;
+  }
+}
+/* FOOTER MOBILE */
+@media only screen and (max-width: 499px) {
+  .footer__links {
+    grid-template-areas: "two" "three" "four";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  .footer__links-box:nth-of-type(1) {
+    display: none;
+  }
+  .grid-container {
+    grid-template-rows: 10rem 1fr 52rem;
+  }
+}
+/* Nav mobile */
+@media only screen and (max-width: 599px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .navbar-right {
+    flex-direction: column;
+  }
+  .grid-container {
+    grid-template-rows: 20rem 1fr 40rem;
+  }
 }
