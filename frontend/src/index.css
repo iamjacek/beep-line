@@ -133,7 +133,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.main__container {
+.home__container {
   width: 100%;
   margin-top: 1rem;
   display: flex;
@@ -142,7 +142,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
 }
-.main__card {
+.product__card {
   margin: 2rem 1rem;
   width: 300px;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
@@ -151,26 +151,26 @@ body {
   background-color: #f3f3f3;
   border: solid 1px #e4e4e4;
 }
-.main__card:hover {
+.product__card:hover {
   box-shadow: 0 25px 70px -15px rgb(0 0 0 / 25%);
 }
-.main__picture-box {
+.product__picture-box {
   height: 350px;
   width: 300px;
   object-fit: cover;
 }
-.main__img {
+.product__img {
   height: 350px;
   width: 300px;
   object-fit: cover;
   border-top-left-radius: 2%;
   border-top-right-radius: 2%;
 }
-.main__link {
+.product__link {
   color: currentColor;
   text-decoration: none;
 }
-.main__title {
+.product__title {
   color: #4a5568;
   text-shadow: 0 1px 2px rgb(0 0 0 / 6%);
   font-size: 1.6rem;
@@ -179,14 +179,14 @@ body {
   width: calc(100% - 4rem);
   height: 36px;
 }
-.main__price {
+.product__price {
   font-family: "Racing Sans One", sans-serif;
   text-shadow: 0 2px 4px rgb(0 0 0 / 5%);
   font-size: 2rem;
   color: #4a5568;
   margin: 0.3rem 0;
 }
-.main__card-body {
+.product__card-body {
   width: calc(100% - 4rem);
   padding: 1rem 2rem;
 }
@@ -199,7 +199,7 @@ body {
 .rating__text {
   color: #4a5568;
 }
-.main__btn {
+.product__btn {
   margin: 1rem auto;
   width: 100%;
 }
@@ -300,21 +300,15 @@ body {
   .grid-container {
     grid-template-rows: 20rem 1fr 62rem;
   }
-  .main__picture-box {
-    height: 300px;
-    width: 100%;
-  }
-  .main__card {
-    width: 250px;
-  }
-  .main__img {
+
+  .product__img {
     width: 100%;
     height: 250px;
     object-fit: cover;
     border-top-left-radius: 2%;
     border-top-right-radius: 2%;
   }
-  .main__picture-box {
+  .product__picture-box {
     height: 250px;
     width: 100%;
     object-fit: cover;
