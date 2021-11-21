@@ -38,7 +38,7 @@ function App() {
               </a>
             </button>
             <a href="#">
-              <button className="btn btn-secondary">Log In</button>
+              <button className="navbar__btn btn btn-secondary ">Log In</button>
             </a>
             <a href="#">
               <button className="btn">Sign Up</button>

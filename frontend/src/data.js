@@ -11,6 +11,7 @@ const data = {
       keywords: ["rugged case"],
       rating: 4.5,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "Keep your iPhone 11 Pro Max safe with this beautiful case. Colours white and red.",
     },
@@ -25,6 +26,7 @@ const data = {
       keywords: ["thin case"],
       rating: 3.0,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "Keep your iPhone 11 Pro safe with this beautiful case. Colors white, red and blue.",
     },
@@ -39,6 +41,7 @@ const data = {
       keywords: ["clear case", "transparent"],
       rating: 2.0,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "Keep your iPhone 8 safe with this beautiful case. Fits standard iPhone 8. Colours white, red and blue.",
     },
@@ -53,6 +56,7 @@ const data = {
       keywords: ["TPU", "no scratches"],
       rating: 5.0,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "Add some extra protection to your phone. If anything happens you don't need to worry. Fits OnePlus 5t screen.",
     },
@@ -67,6 +71,7 @@ const data = {
       keywords: ["Tempered glass"],
       rating: 5.0,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "Worried about expensive and curvy screen in your samsung? This is screen protector to your Galaxy Samsung S8.",
     },
@@ -81,6 +86,7 @@ const data = {
       keywords: ["PET"],
       rating: 2.0,
       numReviews: 10,
+      searchIndex: 1,
       description: "Keep your iPhone's SE screen fall resistant.",
     },
     {
@@ -94,6 +100,7 @@ const data = {
       keywords: ["suction cup"],
       rating: 4.0,
       numReviews: 10,
+      searchIndex: 1,
       description: "It fits all phones between 4' and 6.5'.",
     },
     {
@@ -107,6 +114,7 @@ const data = {
       keywords: ["suction cup"],
       rating: 4.0,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "This holder with long arm can be used at home or your car as well.",
     },
@@ -121,6 +129,7 @@ const data = {
       keywords: ["multi-port"],
       rating: 4.0,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "Amber provides you 15000mAh for your daily mobile life. Amber is nicely designed with soft touch finish surface. Dual USB-A output ports that can charge 2 devices at once, or share it with friends.",
     },
@@ -135,6 +144,7 @@ const data = {
       keywords: ["big capacity"],
       rating: 4.0,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "This charger has got 26800mAh capacity. You can charge your phone even 8 times. Excelent for long travels.",
     },
@@ -149,6 +159,7 @@ const data = {
       keywords: ["nylon"],
       rating: 4.0,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "This replacement Micro-USB Data Cable in provides high-speed data transfer rates, while simultaneously charging your Micro-USB compatible phone through your computer's USB port.",
     },
@@ -163,6 +174,7 @@ const data = {
       keywords: ["kevlar"],
       rating: 4.0,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "The entire Nomad collection of Lightning cables feature DuPont Kevlar K-29, both in the braiding and the inner core of the cable. The end result is a Lightning cable that boasts not only impressive durability but heat resistance and high tensile strength too.",
     },
@@ -177,6 +189,7 @@ const data = {
       keywords: ["iphone chargers"],
       rating: 4.5,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "The Juice Apple Lightning mains charger provides power for your Apple Lightning devices. Included is a mains charger with integrated 1.5m Apple Lightning cable. Plus a handy carry bag to keep your charger tidy when not in use.",
     },
@@ -191,6 +204,7 @@ const data = {
       keywords: ["wireless chargers"],
       rating: 4.5,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "Belkin 10W Qi Wireless Charger Pad with QC3 Plug - Black. Fast wireless charging up to 10 watts so you always safely get the fastest possible wireless charge. Just lay your phone onto the pad for a quick and easy power boost. Fast wireless charging for Qi-enabled devices up to 10W.",
     },
@@ -205,6 +219,7 @@ const data = {
       keywords: ["USB-C chargers"],
       rating: 4.5,
       numReviews: 10,
+      searchIndex: 1,
       description:
         "Keep your micro USB devices charged up and ready to use with this micro USB and mains charger. The USB socket on the mains is handy if you live with people that have different devices, if you fancy sharing.",
     },

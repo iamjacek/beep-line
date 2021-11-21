@@ -39,6 +39,9 @@ body {
   font-weight: 500;
   -webkit-text-stroke: 0.2px #4a5568;
 }
+.navbar__btn {
+  padding: 7px 30px;
+}
 .btn-secondary:hover {
   background: none;
 }
@@ -178,17 +181,146 @@ body {
   margin: 0.3rem 0;
   width: calc(100% - 4rem);
   height: 36px;
+  letter-spacing: 0.08rem;
+}
+.product-screen__title {
+  color: #4a5568;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 6%);
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin: 0;
+  width: 100%;
+  letter-spacing: 0.08rem;
+}
+.product-screen__head {
+  list-style: none;
+  margin-bottom: 1rem;
 }
 .product__price {
   font-family: "Racing Sans One", sans-serif;
   text-shadow: 0 2px 4px rgb(0 0 0 / 5%);
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: #4a5568;
   margin: 0.3rem 0;
 }
 .product__card-body {
   width: calc(100% - 4rem);
   padding: 1rem 2rem;
+}
+.product-screen__container {
+  display: grid;
+  grid-template-areas:
+    "back back back"
+    "image info addtocart";
+  grid-template-columns: 1fr 1fr 280px;
+  grid-template-rows: auto;
+  height: 100%;
+  width: 100%;
+  max-width: 1440px;
+  column-gap: 10px;
+  row-gap: 10px;
+  margin: 3rem auto;
+}
+.product-screen__back-to-results {
+  grid-area: back;
+}
+.product-screen__img-box {
+  grid-area: image;
+  max-width: 450px;
+  max-height: 600px;
+  margin: 0 auto;
+}
+.product-screen__img {
+  border-radius: 2%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.product-screen__info {
+  grid-area: info;
+}
+.product-screen__info-container {
+  padding: 0rem 1rem;
+}
+.product-screen__list {
+  list-style: none;
+  margin-bottom: 3rem;
+}
+.product-screen__price-list {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+.product-screen__price-list-quality {
+  list-style: none;
+  margin-bottom: 0;
+}
+.product-screen__sub-header {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #4a5568;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 6%);
+}
+.product-screen__field {
+  margin-top: 0.5rem;
+  color: #4a5568;
+}
+.product-screen__rating {
+  list-style: none;
+  margin-bottom: 3rem;
+}
+.product-screen__add-to-cart {
+  grid-area: addtocart;
+}
+.product-screen__cart-box {
+  border: solid 1px #4a5568;
+  border-radius: 3%;
+  padding: 2rem 2rem 1rem 2rem;
+}
+.product-screen__price {
+  font-family: "Racing Sans One", sans-serif;
+  text-shadow: 0 2px 4px rgb(0 0 0 / 5%);
+  font-size: 2.2rem;
+  color: #4a5568;
+  margin: 0.3rem 0;
+}
+.product-screen__features-box {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #4a5568;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 6%);
+  margin-bottom: 1rem;
+}
+.product-screen__feature {
+  list-style: circle;
+}
+.product-screen__button {
+  margin-bottom: 0;
+  list-style: none;
+}
+.product-screen__stock--success {
+  color: forestgreen;
+}
+.product-screen__stock--error {
+  color: firebrick;
+}
+.product-screen__quantity {
+  list-style: none;
+}
+.product-screen__select-quantity {
+  padding: 0.5rem;
+}
+.product-screen__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-screen__row-quality {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 .rating {
   font-size: 1.5rem;
@@ -199,7 +331,8 @@ body {
 .rating__text {
   color: #4a5568;
 }
-.product__btn {
+.product__btn,
+.product-screen__btn {
   margin: 1rem auto;
   width: 100%;
 }
@@ -271,6 +404,15 @@ body {
 }
 /* FOOTER TABLET */
 @media only screen and (max-width: 849px) {
+  .product-screen__container {
+    display: grid;
+    grid-template-areas:
+      "back back"
+      "image  addtocart"
+      "info info";
+    grid-template-columns: 1fr 280px;
+    grid-template-rows: auto;
+  }
   .footer__links {
     grid-template-areas: "one two" "three four";
     grid-template-columns: 1fr 1fr;
@@ -283,6 +425,16 @@ body {
 }
 /* Nav and footer mobile */
 @media only screen and (max-width: 599px) {
+  .product-screen__container {
+    display: grid;
+    grid-template-areas:
+      "back"
+      "image"
+      "info"
+      "addtocart";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
   .footer__links {
     grid-template-areas: "two" "three" "four";
     grid-template-columns: 1fr;
