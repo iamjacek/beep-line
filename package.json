@@ -1,0 +1,36 @@
+{
+  "name": "beep-line-2",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Selected Phone Accessories",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch backend --exec node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamjacek/beep-line.git"
+  },
+  "keywords": [
+    "ecommerce",
+    "store",
+    "shop",
+    "online",
+    "store",
+    "beepline",
+    "phone",
+    "accessories"
+  ],
+  "author": "Jacek Witucki",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/iamjacek/beep-line/issues"
+  },
+  "homepage": "https://github.com/iamjacek/beep-line#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
