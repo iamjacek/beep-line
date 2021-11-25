@@ -266,7 +266,7 @@ body {
   list-style: none;
   margin-bottom: 2rem;
 }
-.product-screen__price-list-quality {
+.product-screen__price-list-quantity {
   list-style: none;
   margin-bottom: 0;
 }
@@ -323,7 +323,8 @@ body {
   list-style: none;
 }
 .product-screen__select-quantity {
-  padding: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
 }
 .product-screen__row {
   display: flex;
@@ -331,7 +332,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.product-screen__row-quality {
+.product-screen__row-quantity {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

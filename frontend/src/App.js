@@ -1,8 +1,9 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import line from "./assets/logo-line.svg";
 import cart from "./assets/shopping-cart.svg";
+import CartScreen from "./screens/CartScreen";
 
 function App() {
   return (
@@ -29,13 +30,13 @@ function App() {
           </div>
           <div className="navbar-right">
             <button className="navbar-right__button-cart">
-              <a href="#">
+              <Link to="/cart">
                 <img
                   src={cart}
                   alt="cart icon"
                   className="navbar-right__cart-icon"
                 />
-              </a>
+              </Link>
             </button>
             <a href="#">
               <button className="navbar__btn btn btn-secondary ">Log In</button>
@@ -47,6 +48,8 @@ function App() {
         </header>
         <main className="main">
           <Routes>
+            <Route path="/cart/" element={<CartScreen />} exact />
+            <Route path="/cart/:id" element={<CartScreen />} />
             <Route path="/" element={<HomeScreen />} exact />
             <Route path="/products/:id" element={<ProductScreen />} exact />
           </Routes>

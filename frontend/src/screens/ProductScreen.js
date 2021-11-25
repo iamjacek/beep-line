@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { detailsProduct } from "../actions/productActions";
 import Loading from "../elements/Loading";
@@ -10,14 +10,19 @@ import Rating from "../elements/Rating";
 export default function ProductScreen(props) {
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+
+  const [qty, setQty] = useState(1);
 
   useEffect(() => {
     dispatch(detailsProduct(id));
   }, [id, dispatch]);
 
+  const addToCartHandler = () => {
+    navigate(`/cart/${id}?qty=${qty}`);
+  };
   return (
     <>
       {loading ? (
@@ -114,23 +119,37 @@ export default function ProductScreen(props) {
                   </span>
                 </li>
               </div>
-              <div className="product-screen__row-quality">
-                <li className="product-screen__price-list-quality">
-                  <span>Quantity</span>
-                </li>
-                <li className="product-screen__quantity">
-                  <select className="product-screen__select-quantity">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                </li>
-              </div>
-              <li className="product-screen__button">
-                <button className="product-screen__btn btn">Add to cart</button>
-              </li>
+
+              {product.countInStock > 0 && (
+                <>
+                  <div className="product-screen__row-quantity">
+                    <li className="product-screen__price-list-quantity">
+                      <span>Quantity</span>
+                    </li>
+                    <li className="product-screen__quantity">
+                      <select
+                        className="product-screen__select-quantity"
+                        value={qty}
+                        onChange={(e) => setQty(e.target.value)}
+                      >
+                        {[...Array(product.countInStock).keys()].map((x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
+                      </select>
+                    </li>
+                  </div>
+                  <li className="product-screen__button">
+                    <button
+                      className="product-screen__btn btn"
+                      onClick={addToCartHandler}
+                    >
+                      Add to cart
+                    </button>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
