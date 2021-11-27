@@ -24,8 +24,10 @@ export default function CartScreen() {
   const checkoutHandler = () => {};
   return (
     <div className="cart">
-      <div className="cart__products">
+      <div className="cart__header">
         <h1 className="cart__title">Shopping Cart</h1>
+      </div>
+      <div className="cart__products">
         {error && <MessageBox variant="error">{error}</MessageBox>}
         {cartItems.length === 0 ? (
           <MessageBox>
@@ -70,10 +72,10 @@ export default function CartScreen() {
                       ))}
                     </select>
                   </div>
-                  <div className="cart__price">${item.price}</div>
+                  <div className="cart__price">${item.price.toFixed(2)}</div>
                   <div className="cart__button-box">
                     <button
-                      className="cart__button btn btn-secondary"
+                      className="btn btn-secondary"
                       type="button"
                       onClick={() => removeFromCartHandler(item.product)}
                     >
@@ -88,20 +90,22 @@ export default function CartScreen() {
       </div>
       <div className="cart__summary">
         <ul className="cart__summary-list">
-          <li className="cart__summary-list">
+          <li>
             <h2 className="cart__subtotal">
-              Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : $
-              {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+              Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items):{" "}
+              <strong>
+                ${cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)}
+              </strong>
             </h2>
           </li>
           <li>
             <button
               type="button"
               onClick={checkoutHandler}
-              className="primary block"
+              className="cart__summary-btn btn"
               disabled={cartItems.length === 0}
             >
-              Proceed to Checkout
+              Checkout
             </button>
           </li>
         </ul>

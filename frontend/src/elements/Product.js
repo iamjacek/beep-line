@@ -19,7 +19,7 @@ export default function Product({ product }) {
           <h2 className="product__title">{product.name}</h2>
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
-        <div className="product__price">${product.price}</div>
+        <div className="product__price">${product.price.toFixed(2)}</div>
         <button className="product__btn btn">Add to cart</button>
       </div>
     </div>

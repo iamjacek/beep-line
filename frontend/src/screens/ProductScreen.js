@@ -62,7 +62,7 @@ export default function ProductScreen(props) {
                 <span className="product-screen__sub-header">Price:</span>
                 <p className="product-screen__field">
                   <span className="product-screen__price">
-                    ${product.price}
+                    ${product.price.toFixed(2)}
                   </span>
                 </p>
               </li>
@@ -100,7 +100,7 @@ export default function ProductScreen(props) {
                   <span>Price:</span>
                 </li>
                 <li className="product-screen__price-list">
-                  <span> ${product.price}</span>
+                  <span> ${product.price.toFixed(2)}</span>
                 </li>
               </div>
               <div className="product-screen__row">
