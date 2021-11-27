@@ -1,8 +1,13 @@
 import React from "react";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export default function Product({ product }) {
+  const navigate = useNavigate();
+  const addToCartHandler = () => {
+    navigate(`/cart/${product._id}`);
+  };
   return (
     <div className="product__card">
       <Link to={`/products/${product._id}`}>
@@ -20,7 +25,9 @@ export default function Product({ product }) {
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
         <div className="product__price">${product.price.toFixed(2)}</div>
-        <button className="product__btn btn">Add to cart</button>
+        <button className="product__btn btn" onClick={addToCartHandler}>
+          Add to cart
+        </button>
       </div>
     </div>
   );

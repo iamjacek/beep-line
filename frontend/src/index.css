@@ -263,7 +263,7 @@ body {
 }
 .message-box {
   align-self: baseline;
-  width: 100%;
+  width: calc(100% - 4rem);
   display: inline;
   border: 2px solid transparent;
   border-radius: 8px;
