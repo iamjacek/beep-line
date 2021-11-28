@@ -13,6 +13,12 @@ function App() {
   const [cartItemsTotal, setCartItemsTotal] = useState(0);
 
   useEffect(() => {
+    document
+      .querySelector(".navbar-right__cart-ico-qty")
+      .classList.toggle("navbar-right__cart-ico-qty--active");
+  }, [cartItemsTotal]);
+
+  useEffect(() => {
     setCartItemsTotal(cartItems.reduce((a, c) => a + c.qty, 0));
   }, [cartItems]);
   return (

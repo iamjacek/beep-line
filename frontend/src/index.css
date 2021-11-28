@@ -81,7 +81,8 @@ body {
   grid-template-areas: "image item select price btn";
   grid-template-rows: auto;
   align-items: center;
-  margin: 1rem 0;
+
+  margin: 3rem 0;
 }
 .cart__img-box {
   grid-area: image;
@@ -203,6 +204,10 @@ body {
   font-size: 1.2rem;
   font-weight: 600;
   font-family: "Montserrat", sans-serif;
+  transition: transform 0.2s ease-out;
+}
+.navbar-right__cart-ico-qty--active {
+  transform: rotate(720deg);
 }
 .navbar-right__button-cart:hover {
   transform: scale(1.11) rotate(5deg);
@@ -570,7 +575,7 @@ body {
     grid-template-areas:
       "image item item select price"
       "image item item btn betn";
-    margin: 20px 0;
+    margin: 4rem 0;
   }
 }
 /*mobile cartscreen ultra-narrow*/
