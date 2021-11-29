@@ -1,7 +1,21 @@
+import bcrypt from "bcryptjs";
 const data = {
+  users: [
+    {
+      name: "Jack",
+      email: "admin@beepline.com",
+      password: bcrypt.hashSync("beep12line34store$$", 8),
+      isAdmin: true,
+    },
+    {
+      name: "John",
+      email: "john@doe.com",
+      password: bcrypt.hashSync("1234", 8),
+      isAdmin: false,
+    },
+  ],
   products: [
     {
-      _id: "1",
       name: "Iphone 11 Pro Max Case",
       category: "Case",
       image: "/assets/case1.jpg",
@@ -16,7 +30,6 @@ const data = {
         "Keep your iPhone 11 Pro Max safe with this beautiful case. Colours white and red.",
     },
     {
-      _id: "2",
       name: "Iphone 11 Pro Case",
       category: "Case",
       image: "/assets/case2.jpg",
@@ -31,7 +44,6 @@ const data = {
         "Keep your iPhone 11 Pro safe with this beautiful case. Colors white, red and blue.",
     },
     {
-      _id: "3",
       name: "Iphone 8 Case",
       category: "Case",
       image: "/assets/case3.jpg",
@@ -46,7 +58,6 @@ const data = {
         "Keep your iPhone 8 safe with this beautiful case. Fits standard iPhone 8. Colours white, red and blue.",
     },
     {
-      _id: "4",
       name: "OnePlus 5T Screen Protector",
       category: "Screen Protector",
       image: "/assets/screen1.jpg",
@@ -61,7 +72,6 @@ const data = {
         "Add some extra protection to your phone. If anything happens you don't need to worry. Fits OnePlus 5t screen.",
     },
     {
-      _id: "5",
       name: "Samsung S8 Screen Protector",
       category: "Screen Protector",
       image: "/assets/screen2.jpg",
@@ -76,7 +86,6 @@ const data = {
         "Worried about expensive and curvy screen in your samsung? This is screen protector to your Galaxy Samsung S8.",
     },
     {
-      _id: "6",
       name: "Iphone SE Screen Protector",
       category: "Screen Protector",
       image: "/assets/screen3.jpg",
@@ -90,7 +99,6 @@ const data = {
       description: "Keep your iPhone's SE screen fall resistant.",
     },
     {
-      _id: "7",
       name: "Universal phone holder",
       category: "Phone Holders",
       image: "/assets/holder1.jpg",
@@ -104,7 +112,6 @@ const data = {
       description: "It fits all phones between 4' and 6.5'.",
     },
     {
-      _id: "8",
       name: "Long arm holder",
       category: "Phone Holders",
       image: "/assets/holder2.jpg",
@@ -119,7 +126,6 @@ const data = {
         "This holder with long arm can be used at home or your car as well.",
     },
     {
-      _id: "9",
       name: "Multi-port Powerbank Amber",
       category: "Power Banks",
       image: "/assets/bank1.jpg",
@@ -134,7 +140,6 @@ const data = {
         "Amber provides you 15000mAh for your daily mobile life. Amber is nicely designed with soft touch finish surface. Dual USB-A output ports that can charge 2 devices at once, or share it with friends.",
     },
     {
-      _id: "10",
       name: "Big Capacity Curtis Power Bank",
       category: "Power Banks",
       image: "/assets/bank2.jpg",
@@ -149,7 +154,6 @@ const data = {
         "This charger has got 26800mAh capacity. You can charge your phone even 8 times. Excelent for long travels.",
     },
     {
-      _id: "11",
       name: "Nylon Charging Cable Micro-USB",
       category: "Cables",
       image: "/assets/cable1.jpg",
@@ -164,7 +168,6 @@ const data = {
         "This replacement Micro-USB Data Cable in provides high-speed data transfer rates, while simultaneously charging your Micro-USB compatible phone through your computer's USB port.",
     },
     {
-      _id: "12",
       name: "Nomad Kevlar Lightning Cable",
       category: "Cables",
       image: "/assets/cable2.jpg",
@@ -179,7 +182,6 @@ const data = {
         "The entire Nomad collection of Lightning cables feature DuPont Kevlar K-29, both in the braiding and the inner core of the cable. The end result is a Lightning cable that boasts not only impressive durability but heat resistance and high tensile strength too.",
     },
     {
-      _id: "13",
       name: "Juice Lightning Wall Charger",
       category: "Chargers",
       image: "/assets/charger1.jpg",
@@ -194,7 +196,6 @@ const data = {
         "The Juice Apple Lightning mains charger provides power for your Apple Lightning devices. Included is a mains charger with integrated 1.5m Apple Lightning cable. Plus a handy carry bag to keep your charger tidy when not in use.",
     },
     {
-      _id: "14",
       name: "Belkin 10W Qi Wireless",
       category: "Chargers",
       image: "/assets/wicharger2.jpg",
@@ -209,7 +210,6 @@ const data = {
         "Belkin 10W Qi Wireless Charger Pad with QC3 Plug - Black. Fast wireless charging up to 10 watts so you always safely get the fastest possible wireless charge. Just lay your phone onto the pad for a quick and easy power boost. Fast wireless charging for Qi-enabled devices up to 10W.",
     },
     {
-      _id: "15",
       name: "USB-C Mains Charger",
       category: "Chargers",
       image: "/assets/charger3.jpg",
