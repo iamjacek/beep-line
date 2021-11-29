@@ -1,25 +1,25 @@
 import express from "express";
-import data from "./data.js";
-
+import mongoose from "mongoose";
+import userRouter from "./routers/userRouter.js";
+import productRouter from "./routers/productRouter.js";
 const app = express();
 
-app.get("/api/products/:id", (req, res) => {
-  const product = data.products.find(
-    (x) => Number(x._id) === Number(req.params.id)
-  );
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: "Product Not Found" });
-  }
+mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/beepline", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
-app.get("/api/products", (req, res) => {
-  res.send(data.products);
-});
+app.use("/api/products", productRouter);
+
+app.use("/api/users", userRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is ready");
+});
+
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
 });
 
 const port = process.env.PORT || 5000;
