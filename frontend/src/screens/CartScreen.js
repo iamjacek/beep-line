@@ -41,7 +41,7 @@ export default function CartScreen() {
               <li key={item.product} className="cart__product">
                 <div className="cart__row">
                   <div className="cart__img-box">
-                    <Link to={`/product/${item.product}`}>
+                    <Link to={`/products/${item.product}`}>
                       <img
                         src={item.image}
                         alt={item.name}
@@ -52,7 +52,7 @@ export default function CartScreen() {
                   <div className="cart__item">
                     <Link
                       className="cart__item-link"
-                      to={`/product/${item.product}`}
+                      to={`/products/${item.product}`}
                     >
                       {item.name}
                     </Link>
