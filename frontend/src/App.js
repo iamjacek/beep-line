@@ -6,6 +6,7 @@ import cartIcon from "./assets/shopping-cart.svg";
 import CartScreen from "./screens/CartScreen";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import LoginScreen from "./screens/LoginScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -13,9 +14,11 @@ function App() {
   const [cartItemsTotal, setCartItemsTotal] = useState(0);
 
   useEffect(() => {
-    document
-      .querySelector(".navbar-right__cart-ico-qty")
-      .classList.toggle("navbar-right__cart-ico-qty--active");
+    if (cartItemsTotal > 0) {
+      document
+        .querySelector(".navbar-right__cart-ico-qty")
+        .classList.toggle("navbar-right__cart-ico-qty--active");
+    }
   }, [cartItemsTotal]);
 
   useEffect(() => {
@@ -51,14 +54,14 @@ function App() {
                   alt="cart icon"
                   className="navbar-right__cart-icon"
                 />
-                {cartItemsTotal >= 0 && (
+                {cartItemsTotal > 0 && (
                   <span className="navbar-right__cart-ico-qty">
                     {cartItemsTotal}
                   </span>
                 )}
               </button>
             </Link>
-            <Link to="#">
+            <Link to="/login">
               <button className="navbar__btn btn btn-secondary">Log In</button>
             </Link>
             <Link to="#">
@@ -70,8 +73,9 @@ function App() {
           <Routes>
             <Route path="/cart/" element={<CartScreen />} exact />
             <Route path="/cart/:id" element={<CartScreen />} exact />
-            <Route path="/" element={<HomeScreen />} exact />
             <Route path="/products/:id" element={<ProductScreen />} exact />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/" element={<HomeScreen />} exact />
           </Routes>
         </main>
         <footer className="footer">
@@ -99,12 +103,12 @@ function App() {
                 <h4 className="footer__header">Important</h4>
                 <ul className="footer__link-container">
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 1
                     </Link>
                   </li>
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 2
                     </Link>
                   </li>
@@ -114,12 +118,12 @@ function App() {
                 <h4 className="footer__header">Info</h4>
                 <ul className="footer__link-container">
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 1
                     </Link>
                   </li>
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 2
                     </Link>
                   </li>
@@ -129,12 +133,12 @@ function App() {
                 <h4 className="footer__header">Products</h4>
                 <ul className="footer__link-container">
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 1
                     </Link>
                   </li>
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 2
                     </Link>
                   </li>
@@ -144,17 +148,17 @@ function App() {
             <div className="footer__policy">
               <ul className="footer__link-container footer__link-container-horizontal">
                 <li className="footer__link">
-                  <Link className="footer__hyperlink" to="#">
+                  <Link className="hyperlink" to="#">
                     Disclamer
                   </Link>
                 </li>
                 <li className="footer__link">
-                  <Link className="footer__hyperlink" to="#">
+                  <Link className="hyperlink" to="#">
                     Cookie Policy
                   </Link>
                 </li>
                 <li className="footer__link">
-                  <Link className="footer__hyperlink" to="#">
+                  <Link className="hyperlink" to="#">
                     Privacy
                   </Link>
                 </li>

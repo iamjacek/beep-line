@@ -27,7 +27,7 @@ export default function CartScreen() {
   return (
     <div className="cart">
       <div className="cart__header">
-        <h1 className="cart__title">Shopping Cart</h1>
+        <h1 className="title cart__title">Shopping Cart</h1>
       </div>
       <div className="cart__products">
         {error && <MessageBox variant="error">{error}</MessageBox>}
