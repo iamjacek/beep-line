@@ -30,7 +30,7 @@ a {
 }
 .btn {
   background: linear-gradient(180deg, #9b7ddd -27.45%, #805ad5 100%);
-  border-radius: 100px;
+  border-radius: 8px;
   border: 1px solid transparent;
   padding: 7px 40px;
   color: #ffffff;
@@ -702,15 +702,19 @@ a {
   }
   .navbar-right {
     flex-direction: column;
+    margin-top: 2rem;
   }
   .footer__links-box:nth-of-type(1) {
     display: none;
   }
   .grid-container {
-    grid-template-rows: 25rem 1fr 62rem;
+    grid-template-rows: 30rem 1fr 62rem;
   }
   .navbar {
     justify-content: flex-start;
+  }
+  .navbar-right__button-cart {
+    margin-bottom: 2rem;
   }
   .product__img {
     width: 100%;
