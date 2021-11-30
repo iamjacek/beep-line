@@ -4,14 +4,19 @@ import ProductScreen from "./screens/ProductScreen";
 import line from "./assets/logo-line.svg";
 import cartIcon from "./assets/shopping-cart.svg";
 import CartScreen from "./screens/CartScreen";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import LoginScreen from "./screens/LoginScreen";
+import { logout } from "./actions/userActions";
 
 function App() {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const [cartItemsTotal, setCartItemsTotal] = useState(0);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (cartItemsTotal > 0) {
@@ -24,6 +29,10 @@ function App() {
   useEffect(() => {
     setCartItemsTotal(cartItems.reduce((a, c) => a + c.qty, 0));
   }, [cartItems]);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -61,12 +70,43 @@ function App() {
                 )}
               </button>
             </Link>
-            <Link to="/login">
-              <button className="navbar__btn btn btn-secondary">Log In</button>
-            </Link>
-            <Link to="#">
-              <button className="navbar__btn btn">Sign Up</button>
-            </Link>
+            {userInfo ? (
+              <div className="dropdown">
+                <Link to="#">
+                  <div className="navbar-right__user-name hyperlink">
+                    {userInfo.name} <i class="fas fa-angle-down"></i>
+                  </div>
+                </Link>
+                <ul className="dropdown__content">
+                  <li className="dropdown__link">
+                    <Link to="/">Menu Item</Link>
+                  </li>
+                  <li className="dropdown__link">
+                    <Link to="/">Menu Item</Link>
+                  </li>
+                  <li className="dropdown__link">
+                    <Link to="/">Menu Item</Link>
+                  </li>
+                  <li className="dropdown__link">
+                    <Link to="/">Menu Item</Link>
+                  </li>
+                  <button className="navbar__btn btn" onClick={logoutHandler}>
+                    Log Out
+                  </button>
+                </ul>
+              </div>
+            ) : (
+              <>
+                <Link to="/login">
+                  <button className="navbar__btn btn btn-secondary">
+                    Log In
+                  </button>
+                </Link>
+                <Link to="#">
+                  <button className="navbar__btn btn">Register</button>
+                </Link>
+              </>
+            )}
           </div>
         </header>
         <main className="main">
