@@ -198,28 +198,29 @@ a {
   grid-template-rows: 10rem 1fr 35rem;
   height: 100%;
 }
-.login {
+.login, 
+.register {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.login__form {
+.form {
   width: 100%;
   max-width: 600px;
 }
-.login__header {
+.form__header {
   width: 100%;
   margin: 4rem 0;
 }
-.login__row {
+.form__row {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.login__error {
+.form__error {
   margin-bottom: 2rem;
 }
 .label {
@@ -243,7 +244,7 @@ a {
   margin-bottom: 1rem;
   padding: 10px 40px;
 }
-.login__new-customer {
+.form__alternative-link {
   color: #4a5568;
 }
 .login-link {
@@ -431,7 +432,7 @@ a {
 }
 .product-screen__title,
 .cart__title,
-.login__title {
+.form__title {
   font-size: 2.4rem;
   font-weight: 600;
   margin: 0;

@@ -112,7 +112,7 @@ export default function ProductScreen(props) {
                         In Stock ({product.countInStock})
                       </span>
                     ) : (
-                      <span class="product-screen__stock--error">
+                      <span className="product-screen__stock--error">
                         Unavaible
                       </span>
                     )}

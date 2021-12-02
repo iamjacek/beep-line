@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import LoginScreen from "./screens/LoginScreen";
 import { logout } from "./actions/userActions";
+import RegisterScreen from "./screens/RegisterScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -74,7 +75,7 @@ function App() {
               <div className="dropdown">
                 <Link to="#">
                   <div className="navbar-right__user-name hyperlink">
-                    {userInfo.name} <i class="fas fa-angle-down"></i>
+                    {userInfo.name} <i className="fas fa-angle-down"></i>
                   </div>
                 </Link>
                 <ul className="dropdown__content">
@@ -102,7 +103,7 @@ function App() {
                     Log In
                   </button>
                 </Link>
-                <Link to="#">
+                <Link to="/register">
                   <button className="navbar__btn btn">Register</button>
                 </Link>
               </>
@@ -115,6 +116,7 @@ function App() {
             <Route path="/cart/:id" element={<CartScreen />} exact />
             <Route path="/products/:id" element={<ProductScreen />} exact />
             <Route path="/login" element={<LoginScreen />} />
+            <Route path="/register" element={<RegisterScreen />} />
             <Route path="/" element={<HomeScreen />} exact />
           </Routes>
         </main>
