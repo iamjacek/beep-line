@@ -736,7 +736,7 @@ a {
     grid-template-rows: 1fr 1fr 1fr;
   }
   .grid-container {
-    grid-template-rows: 25rem 1fr 62rem;
+    grid-template-rows: 30rem 1fr 62rem;
   }
   .footer__links-box:nth-of-type(1) {
     display: none;
