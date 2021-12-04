@@ -114,7 +114,7 @@ export default function RegisterScreen() {
           <label className="label" />
           <div className="form__alternative-link">
             <Link className="hyperlink" to={`/login?redirect=${redirect}`}>
-              Already have an account? Log In.
+              Already have an account? Log In
             </Link>
           </div>
         </div>

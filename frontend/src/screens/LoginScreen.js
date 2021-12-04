@@ -80,7 +80,7 @@ export default function LoginScreen() {
           <label className="label" />
           <div className="form__alternative-link">
             <Link className="hyperlink" to={`/register?redirect=${redirect}`}>
-              New customer? Create your account
+              New customer? Create account
             </Link>
           </div>
         </div>
