@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../actions/userActions";
 import { useLocation, useNavigate } from "react-router";
-import queryString from "query-string";
 import Loading from "../elements/Loading";
 import MessageBox from "../elements/MessageBox";
 
@@ -12,14 +11,15 @@ export default function LoginScreen() {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, loading, error } = userLogin;
 
-  const { search } = useLocation();
-  const redirect = queryString.parse(search);
-
-  // const redirect = search ? `/${search.split("=")[1]}` : "/";
+  function useQuery() {
+    const { search } = useLocation();
+    return React.useMemo(() => new URLSearchParams(search), [search]);
+  }
+  const query = useQuery();
+  const redirect = query.get("redirect");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ export default function LoginScreen() {
   };
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo && redirect !== null) {
       navigate(`/${redirect}`);
     }
   }, [navigate, userInfo, redirect]);

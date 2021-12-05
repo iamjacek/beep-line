@@ -12,8 +12,12 @@ export default function RegisterScreen() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { search } = useLocation();
-  const redirect = search ? `/${search.split("=")[1]}` : "/";
+  function useQuery() {
+    const { search } = useLocation();
+    return React.useMemo(() => new URLSearchParams(search), [search]);
+  }
+  const query = useQuery();
+  const redirect = query.get("redirect");
 
   const userRegister = useSelector((state) => state.userRegister);
   const { userInfo, loading, error } = userRegister;
@@ -31,8 +35,8 @@ export default function RegisterScreen() {
   };
 
   useEffect(() => {
-    if (userInfo) {
-      navigate(`${redirect}`);
+    if (userInfo && redirect !== null) {
+      navigate(`/${redirect}`);
     }
   }, [navigate, redirect, userInfo]);
 

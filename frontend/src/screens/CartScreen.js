@@ -118,8 +118,8 @@ export default function CartScreen() {
             </button>
             {cartItems.length > 0 && (
               <div className="cart__info">
-                <i class="fas fa-info-circle"></i> You can still amend your cart
-                before payment
+                <i className="fas fa-info-circle"></i> You can still amend your
+                cart before payment
               </div>
             )}
           </li>
