@@ -4,23 +4,36 @@ import ProductScreen from "./screens/ProductScreen";
 import line from "./assets/logo-line.svg";
 import cartIcon from "./assets/shopping-cart.svg";
 import CartScreen from "./screens/CartScreen";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import LoginScreen from "./screens/LoginScreen";
+import { logout } from "./actions/userActions";
+import RegisterScreen from "./screens/RegisterScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const [cartItemsTotal, setCartItemsTotal] = useState(0);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    document
-      .querySelector(".navbar-right__cart-ico-qty")
-      .classList.toggle("navbar-right__cart-ico-qty--active");
+    if (cartItemsTotal > 0) {
+      document
+        .querySelector(".navbar-right__cart-ico-qty")
+        .classList.toggle("navbar-right__cart-ico-qty--active");
+    }
   }, [cartItemsTotal]);
 
   useEffect(() => {
     setCartItemsTotal(cartItems.reduce((a, c) => a + c.qty, 0));
   }, [cartItems]);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -51,27 +64,60 @@ function App() {
                   alt="cart icon"
                   className="navbar-right__cart-icon"
                 />
-                {cartItemsTotal >= 0 && (
+                {cartItemsTotal > 0 && (
                   <span className="navbar-right__cart-ico-qty">
                     {cartItemsTotal}
                   </span>
                 )}
               </button>
             </Link>
-            <Link to="#">
-              <button className="navbar__btn btn btn-secondary">Log In</button>
-            </Link>
-            <Link to="#">
-              <button className="navbar__btn btn">Sign Up</button>
-            </Link>
+            {userInfo ? (
+              <div className="dropdown">
+                <Link to="#">
+                  <div className="navbar-right__user-name hyperlink">
+                    {userInfo.name} <i className="fas fa-angle-down"></i>
+                  </div>
+                </Link>
+                <ul className="dropdown__content">
+                  <li className="dropdown__link">
+                    <Link to="/">Menu Item</Link>
+                  </li>
+                  <li className="dropdown__link">
+                    <Link to="/">Menu Item</Link>
+                  </li>
+                  <li className="dropdown__link">
+                    <Link to="/">Menu Item</Link>
+                  </li>
+                  <li className="dropdown__link">
+                    <Link to="/">Menu Item</Link>
+                  </li>
+                  <button className="navbar__btn btn" onClick={logoutHandler}>
+                    Log Out
+                  </button>
+                </ul>
+              </div>
+            ) : (
+              <>
+                <Link to="/login">
+                  <button className="navbar__btn btn btn-secondary">
+                    Log In
+                  </button>
+                </Link>
+                <Link to="/register">
+                  <button className="navbar__btn btn">Register</button>
+                </Link>
+              </>
+            )}
           </div>
         </header>
         <main className="main">
           <Routes>
             <Route path="/cart/" element={<CartScreen />} exact />
             <Route path="/cart/:id" element={<CartScreen />} exact />
-            <Route path="/" element={<HomeScreen />} exact />
             <Route path="/products/:id" element={<ProductScreen />} exact />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/register" element={<RegisterScreen />} />
+            <Route path="/" element={<HomeScreen />} exact />
           </Routes>
         </main>
         <footer className="footer">
@@ -99,12 +145,12 @@ function App() {
                 <h4 className="footer__header">Important</h4>
                 <ul className="footer__link-container">
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 1
                     </Link>
                   </li>
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 2
                     </Link>
                   </li>
@@ -114,12 +160,12 @@ function App() {
                 <h4 className="footer__header">Info</h4>
                 <ul className="footer__link-container">
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 1
                     </Link>
                   </li>
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 2
                     </Link>
                   </li>
@@ -129,12 +175,12 @@ function App() {
                 <h4 className="footer__header">Products</h4>
                 <ul className="footer__link-container">
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 1
                     </Link>
                   </li>
                   <li className="footer__link">
-                    <Link className="footer__hyperlink" to="#">
+                    <Link className="hyperlink" to="#">
                       Page 2
                     </Link>
                   </li>
@@ -144,17 +190,17 @@ function App() {
             <div className="footer__policy">
               <ul className="footer__link-container footer__link-container-horizontal">
                 <li className="footer__link">
-                  <Link className="footer__hyperlink" to="#">
+                  <Link className="hyperlink" to="#">
                     Disclamer
                   </Link>
                 </li>
                 <li className="footer__link">
-                  <Link className="footer__hyperlink" to="#">
+                  <Link className="hyperlink" to="#">
                     Cookie Policy
                   </Link>
                 </li>
                 <li className="footer__link">
-                  <Link className="footer__hyperlink" to="#">
+                  <Link className="hyperlink" to="#">
                     Privacy
                   </Link>
                 </li>

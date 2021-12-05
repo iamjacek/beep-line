@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useLocation } from "react-router";
+import { useParams, useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 import MessageBox from "../elements/MessageBox";
@@ -8,6 +8,7 @@ import MessageBox from "../elements/MessageBox";
 export default function CartScreen() {
   const { id } = useParams();
   const { search } = useLocation();
+  const navigate = useNavigate();
   const qty = search ? Number(search.split("=")[1]) : 1;
   const cart = useSelector((state) => state.cart);
   const { cartItems, error } = cart;
@@ -23,11 +24,13 @@ export default function CartScreen() {
     dispatch(removeFromCart(id));
   };
 
-  const checkoutHandler = () => {};
+  const checkoutHandler = () => {
+    navigate("/login?redirect=shipping");
+  };
   return (
     <div className="cart">
       <div className="cart__header">
-        <h1 className="cart__title">Shopping Cart</h1>
+        <h1 className="title cart__title">Shopping Cart</h1>
       </div>
       <div className="cart__products">
         {error && <MessageBox variant="error">{error}</MessageBox>}
@@ -94,7 +97,11 @@ export default function CartScreen() {
         <ul className="cart__summary-list">
           <li>
             <h2 className="cart__subtotal">
-              Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items):{" "}
+              Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)}{" "}
+              {cartItems.reduce((a, c) => a + c.qty, 0) === 1
+                ? "item"
+                : "items"}
+              ):{" "}
               <strong>
                 ${cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)}
               </strong>
@@ -107,8 +114,14 @@ export default function CartScreen() {
               className="cart__summary-btn btn"
               disabled={cartItems.length === 0}
             >
-              Checkout
+              To Checkout
             </button>
+            {cartItems.length > 0 && (
+              <div className="cart__info">
+                <i className="fas fa-info-circle"></i> You can still amend your
+                cart before payment
+              </div>
+            )}
           </li>
         </ul>
       </div>
