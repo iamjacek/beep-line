@@ -50,7 +50,7 @@ export default function ProductScreen(props) {
           <div className="product-screen__info">
             <ul className="product-screen__info-container">
               <li className="product-screen__head">
-                <h1 className="product-screen__title">{product.name}</h1>
+                <h1 className="title product-screen__title">{product.name}</h1>
               </li>
               <li className="product-screen__rating">
                 <Rating
@@ -112,7 +112,7 @@ export default function ProductScreen(props) {
                         In Stock ({product.countInStock})
                       </span>
                     ) : (
-                      <span class="product-screen__stock--error">
+                      <span className="product-screen__stock--error">
                         Unavaible
                       </span>
                     )}
