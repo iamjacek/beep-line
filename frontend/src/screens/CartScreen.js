@@ -97,7 +97,11 @@ export default function CartScreen() {
         <ul className="cart__summary-list">
           <li>
             <h2 className="cart__subtotal">
-              Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items):{" "}
+              Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)}{" "}
+              {cartItems.reduce((a, c) => a + c.qty, 0) === 1
+                ? "item"
+                : "items"}
+              ):{" "}
               <strong>
                 ${cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)}
               </strong>
@@ -110,8 +114,14 @@ export default function CartScreen() {
               className="cart__summary-btn btn"
               disabled={cartItems.length === 0}
             >
-              Checkout
+              To Checkout
             </button>
+            {cartItems.length > 0 && (
+              <div className="cart__info">
+                <i class="fas fa-info-circle"></i> You can still amend your cart
+                before payment
+              </div>
+            )}
           </li>
         </ul>
       </div>

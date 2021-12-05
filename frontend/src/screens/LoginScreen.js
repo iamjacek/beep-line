@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../actions/userActions";
 import { useLocation, useNavigate } from "react-router";
+import queryString from "query-string";
 import Loading from "../elements/Loading";
 import MessageBox from "../elements/MessageBox";
 
@@ -16,7 +17,9 @@ export default function LoginScreen() {
   const { userInfo, loading, error } = userLogin;
 
   const { search } = useLocation();
-  const redirect = search ? `/${search.split("=")[1]}` : "/";
+  const redirect = queryString.parse(search);
+
+  // const redirect = search ? `/${search.split("=")[1]}` : "/";
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -25,7 +28,7 @@ export default function LoginScreen() {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(`${redirect}`);
+      navigate(`/${redirect}`);
     }
   }, [navigate, userInfo, redirect]);
   return (
