@@ -190,7 +190,7 @@ a {
 }
 .dropdown__link {
   list-style: none;
-  margin: 1rem 0;
+  margin: 1rem 5px;
 }
 /* header  */
 .navbar__btn {
