@@ -37,6 +37,8 @@ export default function RegisterScreen() {
   useEffect(() => {
     if (userInfo && redirect !== null) {
       navigate(`/${redirect}`);
+    } else if (userInfo && redirect === null) {
+      navigate(`/`);
     }
   }, [navigate, redirect, userInfo]);
 
