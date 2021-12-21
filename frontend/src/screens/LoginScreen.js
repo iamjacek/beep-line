@@ -29,6 +29,8 @@ export default function LoginScreen() {
   useEffect(() => {
     if (userInfo && redirect !== null) {
       navigate(`/${redirect}`);
+    } else if (userInfo && redirect === null) {
+      navigate(`/`);
     }
   }, [navigate, userInfo, redirect]);
   return (
@@ -75,7 +77,7 @@ export default function LoginScreen() {
         </div>
         <div className="form__row">
           <label className="label" />
-          <button className="login__btn btn" type="submit">
+          <button className="btn login__btn" type="submit">
             Log In
           </button>
         </div>

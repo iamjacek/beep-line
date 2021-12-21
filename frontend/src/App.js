@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import LoginScreen from "./screens/LoginScreen";
 import { logout } from "./actions/userActions";
 import RegisterScreen from "./screens/RegisterScreen";
+import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -117,6 +118,7 @@ function App() {
             <Route path="/products/:id" element={<ProductScreen />} exact />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
+            <Route path="/shipping" element={<ShippingAddressScreen />} />
             <Route path="/" element={<HomeScreen />} exact />
           </Routes>
         </main>
