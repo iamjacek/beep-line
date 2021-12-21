@@ -62,7 +62,7 @@ export default function CheckoutSteps(props) {
         }
       >
         <i className={props.step4 ? "fas fa-circle" : "far fa-circle"}></i>{" "}
-        Place Order
+        Summary
       </div>
     </div>
   );

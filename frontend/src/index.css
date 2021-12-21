@@ -247,13 +247,13 @@ a {
   padding: 1rem;
   border: 1px #a4a4a4 solid;
   margin-bottom: 2.5rem;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 1.6rem;
 }
 .input:focus {
   outline: 2px #8968cf solid;
 }
-.login__btn {
+.login__btn, .shipping__btn {
   width: 100%;
   margin-bottom: 1rem;
   padding: 10px 40px;
@@ -693,6 +693,13 @@ a {
 .shipping {
   width: 100%;
 }
+.shipping-form{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 /*******************************
 ********************************
