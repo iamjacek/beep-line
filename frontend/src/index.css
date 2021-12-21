@@ -675,11 +675,15 @@ a {
   flex-direction: row;
 }
 .checkout-steps__step {
-  border-top: 0.3rem #a4a4a4 solid;
+  border-top: 0.5rem #a4a4a4 solid;
   color: #a4a4a4;
   flex: 1;
   padding: 1rem;
+  padding-top: 2rem;
   font-weight: bold;
+}
+.checkout-steps__arrow{
+  display: none;
 }
 .step--active {
   border-top-color: #805ad5;
@@ -764,6 +768,17 @@ a {
 }
 /* Nav and footer mobile, SHIPPING STEPS */
 @media only screen and (max-width: 649px) {
+  .checkout-steps__arrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#a4a4a4;
+    font-size: 2.2rem;
+    margin: 0.5rem 0 0 0;
+  }
+  .checkout-steps__arrow--active{
+    color:#805ad5;
+  }
   .product-screen__container {
     display: grid;
     grid-template-areas:
