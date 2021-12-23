@@ -66,7 +66,6 @@ export default function RegisterScreen() {
             className="input"
             type="text"
             id="name"
-            placeholder="Enter name"
             required
             onChange={(e) => setName(e.target.value)}
           ></input>
@@ -79,7 +78,6 @@ export default function RegisterScreen() {
             className="input"
             type="email"
             id="email"
-            placeholder="Enter email"
             required
             onChange={(e) => setEmail(e.target.value)}
           ></input>
@@ -92,7 +90,6 @@ export default function RegisterScreen() {
             className="input"
             type="password"
             id="confirmPassword"
-            placeholder="Confirm password"
             required
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></input>
@@ -105,7 +102,6 @@ export default function RegisterScreen() {
             className="input"
             type="password"
             id="password"
-            placeholder="Enter password"
             required
             onChange={(e) => setPassword(e.target.value)}
           ></input>

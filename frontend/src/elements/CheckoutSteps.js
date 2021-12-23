@@ -11,7 +11,7 @@ export default function CheckoutSteps(props) {
         }
       >
         <i className={props.step1 ? "fas fa-circle" : "far fa-circle"}></i>{" "}
-        Sign-In
+        Register
       </div>
       <div className="checkout-steps__arrow checkout-steps__arrow--active">
         <i className="fas fa-arrow-down"></i>
