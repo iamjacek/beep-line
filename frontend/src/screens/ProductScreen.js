@@ -38,7 +38,9 @@ export default function ProductScreen(props) {
       ) : (
         <div className="product-screen__container">
           <div className="product-screen__back-to-results">
-            <Link to="/">Back to results</Link>
+            <Link to="/" className="btn btn-secondary back-to-results__btn">
+              Back to results
+            </Link>
           </div>
           <div className="product-screen__img-box">
             <img
