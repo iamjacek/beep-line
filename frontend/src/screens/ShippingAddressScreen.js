@@ -7,9 +7,9 @@ import CheckoutSteps from "../elements/CheckoutSteps";
 export default function ShippingAddressScreen() {
   const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
-  const { userInfo } = userLogin;
 
   const [fullName, setFullName] = useState(shippingAddress.fullName);
   const [address, setAddress] = useState(shippingAddress.address);

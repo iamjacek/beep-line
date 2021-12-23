@@ -8,6 +8,9 @@ export default function PaymentScreen() {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
   const [redirect, setRedirect] = useState(false);
@@ -19,6 +22,14 @@ export default function PaymentScreen() {
     setRedirect(true);
   };
 
+  //need to be logged in otherwise navigate to login screen
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/login");
+    }
+  }, [userInfo, navigate]);
+
+  //if address does not exist navigate to shipping screen
   useEffect(() => {
     if (!shippingAddress.address) {
       navigate("/shipping");
@@ -27,7 +38,7 @@ export default function PaymentScreen() {
 
   useEffect(() => {
     if (redirect) {
-      navigate("/orderscreen");
+      navigate("/placeorder");
     }
   }, [redirect, navigate]);
 
