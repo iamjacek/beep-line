@@ -59,7 +59,6 @@ export default function ShippingAddressScreen() {
               className="input"
               type="text"
               id="fullName"
-              placeholder="Enter full name"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               required
@@ -73,7 +72,6 @@ export default function ShippingAddressScreen() {
               className="input"
               type="text"
               id="address"
-              placeholder="Enter address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               required
@@ -87,7 +85,6 @@ export default function ShippingAddressScreen() {
               className="input"
               type="text"
               id="address2"
-              placeholder="Enter address Line 2"
               value={address2}
               onChange={(e) => setAddress2(e.target.value)}
             ></input>
@@ -100,7 +97,6 @@ export default function ShippingAddressScreen() {
               className="input"
               type="text"
               id="city"
-              placeholder="Enter city"
               value={city}
               onChange={(e) => setCity(e.target.value)}
               required
@@ -114,7 +110,6 @@ export default function ShippingAddressScreen() {
               className="input"
               type="text"
               id="postalCode"
-              placeholder="Enter post code"
               value={postCode}
               onChange={(e) => setPostCode(e.target.value)}
               required
@@ -128,7 +123,6 @@ export default function ShippingAddressScreen() {
               className="input"
               type="text"
               id="country"
-              placeholder="Enter country"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               required

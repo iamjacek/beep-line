@@ -57,7 +57,6 @@ export default function LoginScreen() {
             className="input"
             type="email"
             id="email"
-            placeholder="Enter email"
             required
             onChange={(e) => setEmail(e.target.value)}
           ></input>
@@ -70,7 +69,6 @@ export default function LoginScreen() {
             className="input"
             type="password"
             id="password"
-            placeholder="Enter password"
             required
             onChange={(e) => setPassword(e.target.value)}
           ></input>
