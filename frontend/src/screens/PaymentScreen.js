@@ -1,4 +1,3 @@
-import e from "express";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +13,7 @@ export default function PaymentScreen() {
   const [redirect, setRedirect] = useState(false);
   const dispatch = useDispatch();
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
     setRedirect(true);
