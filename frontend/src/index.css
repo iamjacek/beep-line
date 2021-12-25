@@ -696,12 +696,14 @@ a {
   flex-direction: row;
 }
 .checkout-steps__step {
+  font-size: 1.6rem;
   border-top: 0.5rem #a4a4a4 solid;
   color: #a4a4a4;
   flex: 1;
   padding: 1rem;
   padding-top: 2rem;
-  font-weight: bold;
+  font-weight: 600;
+  letter-spacing: 1pt;
 }
 .checkout-steps__arrow{
   display: none;
