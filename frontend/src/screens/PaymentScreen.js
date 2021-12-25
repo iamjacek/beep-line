@@ -38,7 +38,7 @@ export default function PaymentScreen() {
 
   useEffect(() => {
     if (redirect) {
-      navigate("/placeorder");
+      navigate("/summary");
     }
   }, [redirect, navigate]);
 

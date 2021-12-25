@@ -118,8 +118,7 @@ export default function CartScreen() {
             </button>
             {cartItems.length > 0 && (
               <div className="cart__info">
-                <i className="fas fa-info-circle"></i> You can review your cart
-                before purchase
+                <i className="fas fa-info-circle"></i> Review your items now
               </div>
             )}
           </li>

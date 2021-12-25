@@ -732,6 +732,10 @@ a {
   align-items: center;
   justify-content: center;
 }
+/* SUMMARY */
+.summary {
+  width: 100%;
+}
 
 /*******************************
 ********************************
