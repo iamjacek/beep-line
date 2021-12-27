@@ -1,40 +1,23 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { createOrder } from "../actions/orderActions";
-import { ORDER_CREATE_RESET } from "../constants/orderConstants";
-import CheckoutSteps from "../elements/CheckoutSteps";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { detailsOrder } from "../actions/orderActions";
 import Loading from "../elements/Loading";
 import MessageBox from "../elements/MessageBox";
 
-export default function SummaryScreen(props) {
+export default function OrderScreen() {
+  const { id: orderId } = useParams();
+  const orderDetails = useSelector((state) => state.orderDetails);
+  const { loading, order, error } = orderDetails;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cart = useSelector((state) => state.cart);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const orderCreate = useSelector((state) => state.orderCreate);
-  const { loading, success, error, order } = orderCreate;
-
-  const toPrice = (num) => Number(num.toFixed(2));
-  cart.itemsPrice = toPrice(
-    cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
-  );
-  cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
-  cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
-  cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
-  const placeOrderHandler = () => {
-    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
-  };
-
   useEffect(() => {
-    if (success) {
-      navigate(`/order/${order._id}`);
-      dispatch({ type: ORDER_CREATE_RESET });
-    }
-  }, [dispatch, success, order, navigate]);
+    dispatch(detailsOrder(orderId));
+  }, [dispatch, orderId]);
 
   useEffect(() => {
     if (!userInfo) {
@@ -42,43 +25,67 @@ export default function SummaryScreen(props) {
     }
   }, [userInfo, navigate]);
 
-  useEffect(() => {
-    if (!cart.paymentMethod) {
-      navigate("/payment");
-    }
-  }, [cart.paymentMethod, navigate]);
-
-  return (
+  return loading ? (
+    <div className="order-screen__info">
+      <Loading />
+    </div>
+  ) : error ? (
+    <div className="order-screen__info">
+      {" "}
+      <MessageBox>{error}</MessageBox>
+    </div>
+  ) : (
     <div className="summary">
-      <CheckoutSteps step1 step2 step3 step4 />
+      <MessageBox>📦 Order no. {order._id}</MessageBox>
+
       <div className="summary__data">
         <div className="summary__details">
           <div className="summary__area">
             <h2 className="title form__title">Shipping</h2>
             <p className="summary__text">
-              <strong>Name:</strong> {cart.shippingAddress.fullName} <br />
-            </p>
-            <p className="summary__text">
-              <strong>Address: </strong> {cart.shippingAddress.address},
-              {cart.shippingAddress.address2
-                ? ` ${cart.shippingAddress.address2}, `
+              <strong>Name:</strong> {order.shippingAddress.fullName} <br />
+              <strong>Address: </strong> {order.shippingAddress.address},
+              {order.shippingAddress.address2
+                ? ` ${order.shippingAddress.address2}, `
                 : " "}
-              {cart.shippingAddress.city}, {cart.shippingAddress.postCode},
-              {cart.shippingAddress.country}
+              {order.shippingAddress.city}, {order.shippingAddress.postCode},
+              {order.shippingAddress.country}
             </p>
+            {order.isDelivered ? (
+              <div className="summary__message">
+                <MessageBox variant="success">
+                  Delivered at {order.deliveredAt}
+                </MessageBox>
+              </div>
+            ) : (
+              <div className="summary__message">
+                <MessageBox variant="error">Not Delivered</MessageBox>
+              </div>
+            )}
           </div>
 
           <div className="summary__area">
             <h2 className="title form__title">Payment</h2>
             <p className="summary__text">
-              <strong>Method:</strong> {cart.paymentMethod}
+              <strong>Method:</strong> {order.paymentMethod}
             </p>
+            {order.isPaid ? (
+              <div className="summary__message">
+                <MessageBox variant="success">
+                  Paid at {order.paidAt}
+                </MessageBox>
+              </div>
+            ) : (
+              <div className="summary__message">
+                <MessageBox variant="error">Not Paid</MessageBox>
+              </div>
+            )}
           </div>
 
           <div className="summary__area">
             <h2 className="title form__title">Order Items</h2>
             <ul className="summary__list">
-              {cart.cartItems.map((item) => (
+              {order.orderItems.map((item) => (
                 <li key={item.product} className="summary__element">
                   <div className="summary__img-box">
                     <img
@@ -113,17 +120,17 @@ export default function SummaryScreen(props) {
 
             <div className="summary__price-data">
               <div>Items</div>
-              <div>${cart.itemsPrice.toFixed(2)}</div>
+              <div>${order.itemsPrice.toFixed(2)}</div>
             </div>
 
             <div className="summary__price-data">
               <div>Shipping</div>
-              <div>${cart.shippingPrice.toFixed(2)}</div>
+              <div>${order.shippingPrice.toFixed(2)}</div>
             </div>
 
             <div className="summary__price-data">
               <div>Tax</div>
-              <div>${cart.taxPrice.toFixed(2)}</div>
+              <div>${order.taxPrice.toFixed(2)}</div>
             </div>
 
             <div className="summary__price-data">
@@ -131,28 +138,9 @@ export default function SummaryScreen(props) {
                 <strong> Order Total</strong>
               </div>
               <div>
-                <strong>${cart.totalPrice.toFixed(2)}</strong>
+                <strong>${order.totalPrice.toFixed(2)}</strong>
               </div>
             </div>
-
-            <button
-              type="button"
-              className="btn summary__btn"
-              onClick={placeOrderHandler}
-              disabled={cart.cartItems.length === 0}
-            >
-              Place Order
-            </button>
-            {loading && (
-              <div className="summary__info">
-                <Loading />
-              </div>
-            )}
-            {error && (
-              <div className="summary__info">
-                <MessageBox variant="error">{error}</MessageBox>
-              </div>
-            )}
           </div>
         </div>
       </div>

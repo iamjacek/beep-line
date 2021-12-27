@@ -803,6 +803,9 @@ a {
 .summary__item-name{
   margin-right: 2rem;
 }
+.summary__item{
+  color:#4a5568;
+}
 .summary__price{
   width: 400px;
   margin-left:1rem;
@@ -829,13 +832,16 @@ a {
   justify-content: space-between;
   align-items: center;
 }
-.summary__info {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 2rem;
+.summary__order-no {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin: 3rem 0 0 0;
+  letter-spacing: normal;
 }
-
+.summary__message{
+  width: 100%;
+  margin-top: 1rem;
+}
 
 /*******************************
 ********************************
