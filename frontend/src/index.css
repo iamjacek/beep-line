@@ -829,6 +829,13 @@ a {
   justify-content: space-between;
   align-items: center;
 }
+.summary__info {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
 
 /*******************************
 ********************************

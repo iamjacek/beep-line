@@ -1,14 +1,22 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { createOrder } from "../actions/orderActions";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 import CheckoutSteps from "../elements/CheckoutSteps";
+import Loading from "../elements/Loading";
+import MessageBox from "../elements/MessageBox";
 
 export default function SummaryScreen(props) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { loading, success, error, order } = orderCreate;
 
   const toPrice = (num) => Number(num.toFixed(2));
   cart.itemsPrice = toPrice(
@@ -18,8 +26,15 @@ export default function SummaryScreen(props) {
   cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
   const placeOrderHandler = () => {
-    // TODO: dispatch place order action
+    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
   };
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`);
+      dispatch({ type: ORDER_CREATE_RESET });
+    }
+  }, [dispatch, success, order, navigate]);
 
   useEffect(() => {
     if (!userInfo) {
@@ -121,6 +136,16 @@ export default function SummaryScreen(props) {
             >
               Place Order
             </button>
+            {loading && (
+              <div className="summary__info">
+                <Loading />
+              </div>
+            )}
+            {error && (
+              <div className="summary__info">
+                <MessageBox variant="error">{error}</MessageBox>
+              </div>
+            )}
           </div>
         </div>
       </div>

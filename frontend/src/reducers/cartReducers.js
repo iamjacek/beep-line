@@ -31,7 +31,6 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
     case CART_ZERO_ITEMS:
       return {
         ...state,
-        error: "",
         cartItems: [],
       };
     case CART_SAVE_SHIPPING_ADDRESS:
