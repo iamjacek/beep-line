@@ -57,6 +57,8 @@ export default function SummaryScreen(props) {
             <h2 className="title form__title">Shipping</h2>
             <p className="summary__text">
               <strong>Name:</strong> {cart.shippingAddress.fullName} <br />
+            </p>
+            <p className="summary__text">
               <strong>Address: </strong> {cart.shippingAddress.address},
               {cart.shippingAddress.address2
                 ? ` ${cart.shippingAddress.address2}, `
@@ -87,7 +89,12 @@ export default function SummaryScreen(props) {
                   </div>
                   <div className="summary__info">
                     <div className="summary__item-name">
-                      <Link to={`/product/${item.product}`}>{item.name}</Link>
+                      <Link
+                        to={`/product/${item.product}`}
+                        className="summary__item"
+                      >
+                        {item.name}
+                      </Link>
                     </div>
 
                     <div className="summary__item-price">
@@ -118,7 +125,7 @@ export default function SummaryScreen(props) {
               <div>Tax</div>
               <div>${cart.taxPrice.toFixed(2)}</div>
             </div>
-
+            <hr></hr>
             <div className="summary__price-data">
               <div>
                 <strong> Order Total</strong>
