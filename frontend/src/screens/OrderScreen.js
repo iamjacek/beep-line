@@ -3,15 +3,34 @@ import Axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { detailsOrder } from "../actions/orderActions";
+import { deliverOrder, detailsOrder, payOrder } from "../actions/orderActions";
 import Loading from "../elements/Loading";
 import MessageBox from "../elements/MessageBox";
+import {
+  ORDER_DELIVER_RESET,
+  ORDER_PAY_RESET,
+} from "../constants/orderConstants";
 
 export default function OrderScreen() {
   const { id: orderId } = useParams();
   const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector((state) => state.orderDetails);
   const { loading, order, error } = orderDetails;
+
+  const orderPay = useSelector((state) => state.orderPay);
+  const {
+    loading: loadingPay,
+    error: errorPay,
+    success: successPay,
+  } = orderPay;
+
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const {
+    loading: loadingDeliver,
+    error: errorDeliver,
+    success: successDeliver,
+  } = orderDeliver;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,7 +49,14 @@ export default function OrderScreen() {
       };
       document.body.appendChild(script);
     };
-    if (!order) {
+    if (
+      !order ||
+      successPay ||
+      successDeliver ||
+      (order && order._id !== orderId)
+    ) {
+      dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(detailsOrder(orderId));
     } else {
       if (!order.isPaid) {
@@ -41,7 +67,7 @@ export default function OrderScreen() {
         }
       }
     }
-  }, [dispatch, order, orderId, sdkReady]);
+  }, [dispatch, order, orderId, sdkReady, successPay, successDeliver]);
 
   useEffect(() => {
     if (!userInfo) {
@@ -49,8 +75,12 @@ export default function OrderScreen() {
     }
   }, [userInfo, navigate]);
 
-  const successPaymentHandler = () => {
-    // TODO: dispatch pay order
+  const successPaymentHandler = (paymentResult) => {
+    dispatch(payOrder(order, paymentResult));
+  };
+
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order._id));
   };
 
   return loading ? (
@@ -81,15 +111,37 @@ export default function OrderScreen() {
             </p>
             {order.isDelivered ? (
               <div className="summary__message">
-                <MessageBox variant="success">
-                  Delivered at {order.deliveredAt}
-                </MessageBox>
+                <MessageBox>Delivered at {order.deliveredAt}</MessageBox>
               </div>
             ) : (
               <div className="summary__message">
                 <MessageBox variant="error">Not Delivered</MessageBox>
               </div>
             )}
+            {userInfo &&
+              userInfo.isAdmin &&
+              order.isPaid &&
+              !order.isDelivered && (
+                <div className="order-screen__info">
+                  {loadingDeliver && (
+                    <div className="order-screen__info-loading">
+                      <Loading />
+                    </div>
+                  )}
+                  {errorDeliver && (
+                    <div className="order-screen__info-loading">
+                      <MessageBox variant="error">{errorDeliver}</MessageBox>
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    className="btn summary__btn"
+                    onClick={deliverHandler}
+                  >
+                    Deliver Order
+                  </button>
+                </div>
+              )}
           </div>
 
           <div className="summary__area">
@@ -99,9 +151,7 @@ export default function OrderScreen() {
             </p>
             {order.isPaid ? (
               <div className="summary__message">
-                <MessageBox variant="success">
-                  Paid at {order.paidAt}
-                </MessageBox>
+                <MessageBox>Paid at {order.paidAt}</MessageBox>
               </div>
             ) : (
               <div className="summary__message">
@@ -177,13 +227,25 @@ export default function OrderScreen() {
                     <Loading />
                   </div>
                 ) : (
-                  <div className="order-screen__info">
-                    <PayPalButton
-                      amount={order.totalPrice}
-                      onSuccess={successPaymentHandler}
-                    ></PayPalButton>
-                  </div>
+                  <>
+                    <div className="order-screen__info">
+                      <PayPalButton
+                        amount={order.totalPrice}
+                        onSuccess={successPaymentHandler}
+                      ></PayPalButton>
+                    </div>
+                  </>
                 )}
+              </div>
+            )}
+            {errorPay && (
+              <div className="order-screen__info-loading">
+                <MessageBox variant="error">{errorPay}</MessageBox>
+              </div>
+            )}
+            {loadingPay && (
+              <div className="order-screen__info-loading">
+                <Loading />
               </div>
             )}
           </div>
