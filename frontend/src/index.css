@@ -842,6 +842,16 @@ a {
   width: 100%;
   margin-top: 1rem;
 }
+.order-screen__info{
+  width: 100%;
+  margin-top: 1rem;
+}
+.order-screen__info-loading{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
 
 /*******************************
 ********************************

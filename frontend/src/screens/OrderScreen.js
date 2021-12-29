@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
+import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { detailsOrder } from "../actions/orderActions";
@@ -7,6 +9,7 @@ import MessageBox from "../elements/MessageBox";
 
 export default function OrderScreen() {
   const { id: orderId } = useParams();
+  const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector((state) => state.orderDetails);
   const { loading, order, error } = orderDetails;
   const dispatch = useDispatch();
@@ -16,14 +19,39 @@ export default function OrderScreen() {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    dispatch(detailsOrder(orderId));
-  }, [dispatch, orderId]);
+    const addPayPalScript = async () => {
+      const { data } = await Axios.get("/api/config/paypal");
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+      script.async = true;
+      script.onload = () => {
+        setSdkReady(true);
+      };
+      document.body.appendChild(script);
+    };
+    if (!order) {
+      dispatch(detailsOrder(orderId));
+    } else {
+      if (!order.isPaid) {
+        if (!window.paypal) {
+          addPayPalScript();
+        } else {
+          setSdkReady(true);
+        }
+      }
+    }
+  }, [dispatch, order, orderId, sdkReady]);
 
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     }
   }, [userInfo, navigate]);
+
+  const successPaymentHandler = () => {
+    // TODO: dispatch pay order
+  };
 
   return loading ? (
     <div className="order-screen__info">
@@ -132,7 +160,7 @@ export default function OrderScreen() {
               <div>Tax</div>
               <div>${order.taxPrice.toFixed(2)}</div>
             </div>
-
+            <hr></hr>
             <div className="summary__price-data">
               <div>
                 <strong> Order Total</strong>
@@ -141,6 +169,23 @@ export default function OrderScreen() {
                 <strong>${order.totalPrice.toFixed(2)}</strong>
               </div>
             </div>
+            {!order.isPaid && (
+              <div className="summary__price-data">
+                {!sdkReady ? (
+                  <div className="order-screen__info-loading">
+                    {" "}
+                    <Loading />
+                  </div>
+                ) : (
+                  <div className="order-screen__info">
+                    <PayPalButton
+                      amount={order.totalPrice}
+                      onSuccess={successPaymentHandler}
+                    ></PayPalButton>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

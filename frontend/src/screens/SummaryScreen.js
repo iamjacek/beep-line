@@ -125,7 +125,7 @@ export default function SummaryScreen(props) {
               <div>Tax</div>
               <div>${cart.taxPrice.toFixed(2)}</div>
             </div>
-
+            <hr></hr>
             <div className="summary__price-data">
               <div>
                 <strong> Order Total</strong>
