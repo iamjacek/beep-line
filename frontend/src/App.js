@@ -13,6 +13,7 @@ import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import SummaryScreen from "./screens/SummaryScreen";
 import OrderScreen from "./screens/OrderScreen";
+import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -84,17 +85,9 @@ function App() {
                 </Link>
                 <ul className="dropdown__content">
                   <li className="dropdown__link">
-                    <Link to="/">Menu Item</Link>
+                    <Link to="/orderhistory">Order History</Link>
                   </li>
-                  <li className="dropdown__link">
-                    <Link to="/">Menu Item</Link>
-                  </li>
-                  <li className="dropdown__link">
-                    <Link to="/">Menu Item</Link>
-                  </li>
-                  <li className="dropdown__link">
-                    <Link to="/">Menu Item</Link>
-                  </li>
+
                   <button className="navbar__btn btn" onClick={logoutHandler}>
                     Log Out
                   </button>
@@ -124,6 +117,7 @@ function App() {
             <Route path="/payment" element={<PaymentScreen />} />
             <Route path="/summary" element={<SummaryScreen />} />
             <Route path="/order/:id" element={<OrderScreen />} />
+            <Route path="/orderhistory" element={<OrderHistoryScreen />} />
             <Route path="/shipping" element={<ShippingAddressScreen />} />
             <Route path="/" element={<HomeScreen />} exact />
           </Routes>
