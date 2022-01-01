@@ -65,6 +65,10 @@ a {
   color: #805ad5;
   text-decoration: none;
 }
+.btn-small{
+  font-size: 1.2rem;
+  padding: 5px 10px;
+}
 .cart {
   display: grid;
   grid-template-areas: "header header" "products summary";
@@ -853,6 +857,39 @@ a {
   margin-top: 1rem;
 }
 
+/* ORDER HISTORY SCREEN & TABLE */
+.order-history{
+  width: 100%;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table tbody tr:nth-of-type(odd) {
+  background-color: #f4f4f4;
+}
+.table td,
+.table th {
+  text-align: left;
+  border: 0.1rem solid #e4e4e4;
+  padding: 0.5rem;
+}
+.table button {
+  margin: 0 0.2rem;
+  align-self: center;
+}
+table td span {
+  background: #eee;
+  color: dimgrey;
+  display: none;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 5px;
+  position: absolute;
+  text-transform: uppercase;
+  top: 0;
+  left: 0;
+}
 /*******************************
 ********************************
 ********************************
@@ -860,6 +897,39 @@ a {
 ********************************
 ********************************
 ********************************/
+
+/* TABLE ON MOBILE */
+@media only screen and (max-width: 800px) {
+  .table td,
+.table th {
+  padding: 3rem 1rem 1rem 1rem;
+}
+.table tbody tr:nth-of-type(odd) {
+  background-color: #fff;
+}
+  .table th {
+      left: -9999px;
+      position: absolute;
+      visibility: hidden;
+  }
+  table tr {
+      border-bottom: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+  }
+  table td {
+      border: 1px solid;
+      margin: 0 -1px -1px 0;
+      position: relative;
+      width: 50%;
+      word-wrap: break-word;
+  }
+  table td span {
+      display: block;
+  }
+}
 
 /*tablet cart screen*/
 @media only screen and (max-width: 999px) {
